@@ -8,48 +8,48 @@
 #include <string>
 #include <vector>
 using namespace std;
-//º¯ÊıÖĞÊı×éÓÃ¶ÑÕ»¿ª±Ù£¬½áÊø»ØÊÕ£¬½â¾ö¶ÑÕ»Ëğ»µÎÊÌâ
-//°Ñ¼Ó¼õ³Ë³ıÔËËãĞèÇó¸ÄÎª¿É×ÔÑ¡·ûºÅ×é³É
-//Êä³öÊÇÒ»¸öº¯Êı Ò»¸öÊı×é´æ²Ù×÷Êı Ò»¸öÊı×é´æ·ûºÅ
-//Ìí¼Ó¶ÔĞ¡ÊıµÄĞ¡ÊıµãºóÈ¡ÖµÎ»¿ØÖÆ
-//Ëæ»úÀ¨ºÅµÄÊıÁ¿ºÍÎ»ÖÃ
+//å‡½æ•°ä¸­æ•°ç»„ç”¨å †æ ˆå¼€è¾Ÿï¼Œç»“æŸå›æ”¶ï¼Œè§£å†³å †æ ˆæŸåé—®é¢˜
+//æŠŠåŠ å‡ä¹˜é™¤è¿ç®—éœ€æ±‚æ”¹ä¸ºå¯è‡ªé€‰ç¬¦å·ç»„æˆ
+//è¾“å‡ºæ˜¯ä¸€ä¸ªå‡½æ•° ä¸€ä¸ªæ•°ç»„å­˜æ“ä½œæ•° ä¸€ä¸ªæ•°ç»„å­˜ç¬¦å·
+//æ·»åŠ å¯¹å°æ•°çš„å°æ•°ç‚¹åå–å€¼ä½æ§åˆ¶
+//éšæœºæ‹¬å·çš„æ•°é‡å’Œä½ç½®
 int Max, N, OperationalSymbolSelection, WhetherDecimal, OutputMethods, WhetherBraces, File, Reset,Length,nGrade;
 char lbrace = '(', rbrace = ')';
 char Grade[4];
 FILE* p;
-void IntegerArithmeticAnswerOutput(int x[])//ÕûÊıÔËËã´ğ°¸
+void IntegerArithmeticAnswerOutput(int x[])//æ•´æ•°è¿ç®—ç­”æ¡ˆ
 {
 	int i;
-	if (OutputMethods == 1)      //Êä³öµ½ÎÄ¼ş
+	if (OutputMethods == 1)      //è¾“å‡ºåˆ°æ–‡ä»¶
 	{
-		printf("\nÕıÈ·´ğ°¸£º\n");
+		printf("\næ­£ç¡®ç­”æ¡ˆï¼š\n");
 		for (i = 1; i < N + 1; i++)
 			printf("(%d) %d\n", i, x[i]);
 	}
-	else         //Êä³öµ½ÆÁÄ»
+	else         //è¾“å‡ºåˆ°å±å¹•
 	{
-		fprintf(p, "\nÕıÈ·´ğ°¸£º\n");
+		fprintf(p, "\næ­£ç¡®ç­”æ¡ˆï¼š\n");
 		for (i = 1; i < N + 1; i++)
 			fprintf(p, "(%d) %d\n", i, x[i]);
 	}
 }
-void DecimalArithmeticAnswerOutput(double y[])     //Ğ¡ÊıÔËËã´ğ°¸
+void DecimalArithmeticAnswerOutput(double y[])     //å°æ•°è¿ç®—ç­”æ¡ˆ
 {
 	int i;
 	if (OutputMethods == 1)
 	{
-		printf("\nÕıÈ·´ğ°¸£º\n");
+		printf("\næ­£ç¡®ç­”æ¡ˆï¼š\n");
 		for (i = 1; i < N + 1; i++)
 			printf("(%d) %.2f\n", i, y[i]);
 	}
 	else
 	{
-		fprintf(p, "\nÕıÈ·´ğ°¸£º\n");
+		fprintf(p, "\næ­£ç¡®ç­”æ¡ˆï¼š\n");
 		for (i = 1; i < N + 1; i++)
 			fprintf(p, "(%d) %.2f\n", i, y[i]);
 	}
 }
-void SingleOperatorIntegerArithmetic()//ÕûÊıµ¥·ûºÅÔËËã
+void SingleOperatorIntegerArithmetic()//æ•´æ•°å•ç¬¦å·è¿ç®—
 {
 	int i, j, m, k,sum = 0;
 	int *result;
@@ -57,21 +57,21 @@ void SingleOperatorIntegerArithmetic()//ÕûÊıµ¥·ûºÅÔËËã
 	char op;
 	for (i = 1; i<= N; i++)
 	{
-		sum = 0;	//ÖØÖÃ´ğ°¸
-		while (1)	//È¡ËãÊ½³¤¶È
+		sum = 0;	//é‡ç½®ç­”æ¡ˆ
+		while (1)	//å–ç®—å¼é•¿åº¦
 		{
 			Length = rand() % 7;
 			if (Length > 1)
 				break;
 		}
-		int* number;	//²Ù×÷Êı Êı×é
+		int* number;	//æ“ä½œæ•° æ•°ç»„
 		number = (int*)malloc(sizeof(int) * Length);
-		for (j = 0; j < Length; j++)	//È¡±»²Ù×÷Êı
+		for (j = 0; j < Length; j++)	//å–è¢«æ“ä½œæ•°
 		{
 			number[j] = rand() % Max;
 			if (OperationalSymbolSelection == 4 && number[j] == 0)j--;
 		}
-		if (OperationalSymbolSelection == 1)//¼Ó·¨ÔËËã
+		if (OperationalSymbolSelection == 1)//åŠ æ³•è¿ç®—
 		{
 			for (k = 0; k < Length; k++)
 			{
@@ -80,7 +80,7 @@ void SingleOperatorIntegerArithmetic()//ÕûÊıµ¥·ûºÅÔËËã
 			result[i] = sum;
 			op = '+';
 		}
-		else if (OperationalSymbolSelection == 2)	//¼õ·¨ÔËËã
+		else if (OperationalSymbolSelection == 2)	//å‡æ³•è¿ç®—
 		{
 			sum = number[0];
 			for (k = 1; k < Length; k++)
@@ -128,7 +128,7 @@ void SingleOperatorIntegerArithmetic()//ÕûÊıµ¥·ûºÅÔËËã
 	}
 	IntegerArithmeticAnswerOutput(result);
 }
-void SingleOperatorDecimalArithmetic()//Ğ¡ÊıÔËËã
+void SingleOperatorDecimalArithmetic()//å°æ•°è¿ç®—
 {
 	char op;
 	int i, j, m, k;
@@ -144,7 +144,7 @@ void SingleOperatorDecimalArithmetic()//Ğ¡ÊıÔËËã
 			if (Length >1)
 				break;
 		}
-		double* number;	//²Ù×÷Êı Êı×é
+		double* number;	//æ“ä½œæ•° æ•°ç»„
 		number = (double*)malloc(sizeof(double) * Length);
 		for (j = 0; j < Length; j++)
 		{
@@ -209,7 +209,7 @@ void SingleOperatorDecimalArithmetic()//Ğ¡ÊıÔËËã
 	}
 	DecimalArithmeticAnswerOutput(result);
 }
-void MultipleOperatorDecimalArithmetic()  //»ìºÏÔËËã£¨Ğ¡Êı£©
+void MultipleOperatorDecimalArithmetic()  //æ··åˆè¿ç®—ï¼ˆå°æ•°ï¼‰
 {
 	for (int i = 0; i < N; i++)
 	{
@@ -222,16 +222,16 @@ void MultipleOperatorDecimalArithmetic()  //»ìºÏÔËËã£¨Ğ¡Êı£©
 		
 		int nbrace=0;
 		vector <double>s;
-		double* number;	//²Ù×÷Êı Êı×é
+		double* number;	//æ“ä½œæ•° æ•°ç»„
 		number = (double*)malloc(sizeof(double) * Length);
-		char* operation;	//ÔËËã·ûºÅÊı×é
+		char* operation;	//è¿ç®—ç¬¦å·æ•°ç»„
 		operation = (char*)malloc(sizeof(char) * (Length - 1));
-		for (int j = 0; j < Length; j++)	//È¡±»²Ù×÷Êı
+		for (int j = 0; j < Length; j++)	//å–è¢«æ“ä½œæ•°
 		{
 			number[j] = (rand() % (Max * 100)) / 100.00;
 		}
 		
-		for (int j = 0; j < Length-1; j++)	//È¡·ûºÅ
+		for (int j = 0; j < Length-1; j++)	//å–ç¬¦å·
 		{
 			operation[j] = Grade[rand() % nGrade];
 		}
@@ -243,7 +243,7 @@ void MultipleOperatorDecimalArithmetic()  //»ìºÏÔËËã£¨Ğ¡Êı£©
 			s.push_back(number[k++]);
 		}
 		
-		if (WhetherBraces == 1)//ÓĞÀ¨ºÅ
+		if (WhetherBraces == 1)//æœ‰æ‹¬å·
 		{
 			while (1)
 			{
@@ -281,7 +281,7 @@ void MultipleOperatorDecimalArithmetic()  //»ìºÏÔËËã£¨Ğ¡Êı£©
 	}
 
 }
-void MultipleOperatorIntegerArithmetic()  //»ìºÏÔËËã£¨ÕûÊı£©
+void MultipleOperatorIntegerArithmetic()  //æ··åˆè¿ç®—ï¼ˆæ•´æ•°ï¼‰
 {
 	for (int i = 0; i < N; i++)
 	{
@@ -294,16 +294,16 @@ void MultipleOperatorIntegerArithmetic()  //»ìºÏÔËËã£¨ÕûÊı£©
 		}
 		
 		int nbrace=0;
-		int* number;	//²Ù×÷Êı Êı×é
+		int* number;	//æ“ä½œæ•° æ•°ç»„
 		number = (int*)malloc(sizeof(int) * Length);
-		char* operation;	//ÔËËã·ûºÅÊı×é
+		char* operation;	//è¿ç®—ç¬¦å·æ•°ç»„
 		operation = (char*)malloc(sizeof(char) * (Length - 1));
-		for (int j = 0; j < Length; j++)	//È¡±»²Ù×÷Êı
+		for (int j = 0; j < Length; j++)	//å–è¢«æ“ä½œæ•°
 		{
 			number[j] = rand() % Max;
 		}
 		
-		for (int j = 0; j < Length-1; j++)	//È¡·ûºÅ
+		for (int j = 0; j < Length-1; j++)	//å–ç¬¦å·
 		{
 			operation[j] = Grade[rand() % nGrade];
 		}
@@ -317,7 +317,7 @@ void MultipleOperatorIntegerArithmetic()  //»ìºÏÔËËã£¨ÕûÊı£©
 			k++;
 		}
 		
-		if (WhetherBraces == 1)//ÓĞÀ¨ºÅ
+		if (WhetherBraces == 1)//æœ‰æ‹¬å·
 		{
 			while (1)
 			{
@@ -351,19 +351,19 @@ void MultipleOperatorIntegerArithmetic()  //»ìºÏÔËËã£¨ÕûÊı£©
 }
 int main()
 {
-	fopen_s(&p, "½á¶Ô±à³Ì.txt", "w");
-	printf("***********ËÄÔòÔËËã**************\n");
-	printf("1.ÇëÉèÖÃÌâÄ¿ÊıÁ¿:");
+	fopen_s(&p, "ç»“å¯¹ç¼–ç¨‹.txt", "w");
+	printf("***********å››åˆ™è¿ç®—**************\n");
+	printf("1.è¯·è®¾ç½®é¢˜ç›®æ•°é‡:");
 	scanf_s("%d", &N);
-	printf("\n2.ÇëÑ¡ÔñÔËËãÄÑ¶È(1.¼Ó·¨×¨ÏîÁ·Ï°  2.¼õ·¨×¨ÏîÁ·Ï°  3.³Ë·¨×¨ÏîÁ·Ï°  4.³ı·¨×¨ÏîÁ·Ï°  5.»ìºÏÔËËãÁ·Ï°)£º");
+	printf("\n2.è¯·é€‰æ‹©è¿ç®—éš¾åº¦(1.åŠ æ³•ä¸“é¡¹ç»ƒä¹   2.å‡æ³•ä¸“é¡¹ç»ƒä¹   3.ä¹˜æ³•ä¸“é¡¹ç»ƒä¹   4.é™¤æ³•ä¸“é¡¹ç»ƒä¹   5.æ··åˆè¿ç®—ç»ƒä¹ )ï¼š");
 	scanf_s("%d", &OperationalSymbolSelection);
 	if (OperationalSymbolSelection == 5)
 	{
-		printf("\nÊÇ·ñÓĞÀ¨ºÅ(1.ÓĞ 2.Ã»ÓĞ):");
+		printf("\næ˜¯å¦æœ‰æ‹¬å·(1.æœ‰ 2.æ²¡æœ‰):");
 		scanf_s("%d", &WhetherBraces);
-		printf("\nÇëÊäÈëÒªÌí¼ÓµÄÔËËã·ûºÅ¸öÊı£º");
+		printf("\nè¯·è¾“å…¥è¦æ·»åŠ çš„è¿ç®—ç¬¦å·ä¸ªæ•°ï¼š");
 		scanf_s("%d", &nGrade);
-		printf("\nÇëÑ¡ÔñÒªÌí¼ÓµÄÔËËã·ûºÅ£º£¨1.¼Ó·¨  2.¼õ·¨  3.³Ë·¨  4.³ı·¨£©£º");
+		printf("\nè¯·é€‰æ‹©è¦æ·»åŠ çš„è¿ç®—ç¬¦å·ï¼šï¼ˆ1.åŠ æ³•  2.å‡æ³•  3.ä¹˜æ³•  4.é™¤æ³•ï¼‰ï¼š");
 		for (int i = 0; i < nGrade; i++)
 		{
 			int ii;
@@ -374,16 +374,16 @@ int main()
 			else if (ii == 4)Grade[i] = '/';
 		}
 	}
-	printf("\n3.ÇëÉèÖÃ×î´óÊı£º");
+	printf("\n3.è¯·è®¾ç½®æœ€å¤§æ•°ï¼š");
 	scanf_s("%d", &Max);
-	printf("\n4.ÊÇ·ñÓĞĞ¡Êı(1.ÓĞ  2.Ã»ÓĞ)£º");
+	printf("\n4.æ˜¯å¦æœ‰å°æ•°(1.æœ‰  2.æ²¡æœ‰)ï¼š");
 	scanf_s("%d", &WhetherDecimal);
-	printf("\n5.Ñ¡ÔñÊä³ö·½Ê½(1.ÏÔÊ¾ÔÚÆÁÄ»ÉÏ 2.Éú³ÉÎÄ¼ş):");
+	printf("\n5.é€‰æ‹©è¾“å‡ºæ–¹å¼(1.æ˜¾ç¤ºåœ¨å±å¹•ä¸Š 2.ç”Ÿæˆæ–‡ä»¶):");
 	scanf_s("%d", &OutputMethods);
 
 	if (OutputMethods == 2)
-		printf("\nÒÑÉú³ÉËÄÔòÔËËã.txtÎÄ¼ş");
-		//p = fopen_s("ËÄÔòÔËËã.txt", "w");
+		printf("\nå·²ç”Ÿæˆå››åˆ™è¿ç®—.txtæ–‡ä»¶");
+		//p = fopen_s("å››åˆ™è¿ç®—.txt", "w");
 		printf("\n\n");
 	if (OperationalSymbolSelection != 5)
 	{
@@ -395,17 +395,17 @@ int main()
 	else
 	{
 		if (WhetherDecimal == 2)
-			MultipleOperatorIntegerArithmetic();  //»ìºÏÔËËã£¨ÎŞĞ¡Êı¡¢ÓĞÎŞÀ¨ºÅ£©
+			MultipleOperatorIntegerArithmetic();  //æ··åˆè¿ç®—ï¼ˆæ— å°æ•°ã€æœ‰æ— æ‹¬å·ï¼‰
 		else
-			MultipleOperatorDecimalArithmetic(); //»ìºÏÔËËã£¨ÓĞĞ¡Êı¡¢ÓĞÎŞÀ¨ºÅ£©
+			MultipleOperatorDecimalArithmetic(); //æ··åˆè¿ç®—ï¼ˆæœ‰å°æ•°ã€æœ‰æ— æ‹¬å·ï¼‰
 	}
 	fclose(p);
 
-	printf("\nÊÇ·ñÖØĞÂÔËĞĞ¸Ã³ÌĞò?   <1>ÊÇ   <2>ÍË³ö\n");
+	printf("\næ˜¯å¦é‡æ–°è¿è¡Œè¯¥ç¨‹åº?   <1>æ˜¯   <2>é€€å‡º\n");
 	scanf_s("%d", &Reset);
 	if (Reset == 1)
 	{
-		system("cls");  //ÇåÆÁ£¬ÖØĞÂÔËĞĞ
+		system("cls");  //æ¸…å±ï¼Œé‡æ–°è¿è¡Œ
 		main();
 	}
 }
